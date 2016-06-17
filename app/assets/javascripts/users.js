@@ -37,6 +37,7 @@ $(document).ready(function() {
 			});
 		}
 	getUsers();
+
 	$(document).on('click', '.delete', function() {
 		var id = $(this).closest('tr').data().id;
 		deleteUser(id);
@@ -62,11 +63,11 @@ $(document).ready(function() {
 	}
 
 	var re = /\/users\/\d+/;
-	if (user.pathname.match(re)) {
-		var panel = $('panel');
+	if (location.pathname.match(re)) {
+		var panel = $('#panel');
 		var id = panel.data().id;
 		$.ajax({
-			url: baseUrl + '/' + id,
+			url: baseUrl + '/users' + id,
 			type: 'GET',
 			dataType: 'JSON',
 		}).done(function(data) {
@@ -90,7 +91,7 @@ $(document).ready(function() {
 			dataType: 'JSON',
 			data: $(this).serializeArray()
 		}).done(function() {
-			location.pathname = '/';
+			location.pathname = '/users';
 		})
 	})
 })
